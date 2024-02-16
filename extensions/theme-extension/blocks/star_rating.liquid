@@ -1,0 +1,951 @@
+{% schema %}
+{
+  "name": "Jewellery_App_new",
+  "target": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "product", "autofill": true },
+    { "type": "color", "id": "colour", "label": "Star Colour", "default": "#ff0000" }
+  ]
+}
+{% endschema %}
+
+
+<link rel="stylesheet" href="{{ 'solitaire_ring.css' | asset_url }}">
+
+<div>
+  <div class="productimagecarosoul">
+    <section>
+      <div class="container">
+        <div class="carousel">
+          <input type="radio" name="slides" checked="checked" id="slide-1">
+          <input type="radio" name="slides" id="slide-2">
+          <input type="radio" name="slides" id="slide-3">
+          <input type="radio" name="slides" id="slide-4">
+          <input type="radio" name="slides" id="slide-5">
+          <input type="radio" name="slides" id="slide-6">
+          <ul class="carousel__slides">
+            <li class="carousel__slide" id="previewList">
+              <figure>
+                <div>
+                  <img
+                    height="{}"
+                    width="{}"
+                    id="imag1"
+                    src="https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"
+                    alt=""
+                  >
+                </div>
+              </figure>
+            </li>
+            <li class="carousel__slide">
+              <figure>
+                <div>
+                  <img
+                    height="{}"
+                    width="{}"
+                    id="imag2"
+                    src="https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"
+                    alt=""
+                  >
+                </div>
+              </figure>
+            </li>
+            <li class="carousel__slide">
+              <figure>
+                <div>
+                  <img
+                    height="{}"
+                    width="{}"
+                    id="imag3"
+                    src="https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"
+                    alt=""
+                  >
+                </div>
+              </figure>
+            </li>
+            <li class="carousel__slide">
+              <figure>
+                <div>
+                  <img
+                    height="{}"
+                    width="{}"
+                    id="imag4"
+                    src="https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"
+                    alt=""
+                  >
+                </div>
+              </figure>
+            </li>
+            <li class="carousel__slide">
+              <figure>
+                <div>
+                  <img
+                    height="{}"
+                    width="{}"
+                    id="imag5"
+                    src="https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"
+                    alt=""
+                  >
+                </div>
+              </figure>
+            </li>
+            <li class="carousel__slide">
+              <figure>
+                <div>
+                  <img
+                    height="{}"
+                    width="{}"
+                    id="imag6"
+                    src="https://coolbackgrounds.io/images/backgrounds/white/pure-white-background-85a2a7fd.jpg"
+                    alt=""
+                  >
+                </div>
+              </figure>
+            </li>
+          </ul>
+          <ul class="carousel__thumbnails" id="thumbnailList"></ul>
+        </div>
+      </div>
+{% comment %} 
+      <div class="a">
+        <table>
+          <tr style="background-color: #9FD1D8; color: white;">
+            <th colspan="2">PRODUCT DETAILS</th>
+          </tr>
+          <tr style="padding: 15px 30px;">
+            <th colspan="2">100% NATURAL DIAMOND (NOT ENHANCED, NOT LAB CREATED, REAL DIAMOND)</th>
+          </tr>
+          <tr>
+            <td style="width: 30%; font-weight: 600;">CERTIFICATE</td>
+            <td>AGA</td>
+          </tr>
+          <tr class="b">
+            <td class="column-1">Center Weight Stone</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="column-1">TYPE</td>
+            <td>Diamond</td>
+          </tr>
+          <tr>
+            <td class="column-1">TREATMENT</td>
+            <td>100% Real Natural Diamond, Not Enhanced</td>
+          </tr>
+          <tr>
+            <td class="column-1">SHAPE</td>
+            <td id="value">Round</td>
+          </tr>
+          <tr>
+            <td class="column-1">TOTAL WEIGHT</td>
+            <td id="total-weight">1 ct.</td>
+          </tr>
+          <tr>
+            <td class="column-1">COLOR</td>
+            <td id="color">H</td>
+          </tr>
+          <tr>
+            <td class="column-1">CLARITY</td>
+            <td id="clarity">SI3</td>
+          </tr>
+          <tr>
+            <td class="column-1">CUT GRADE</td>
+            <td id="cut-grade">Excellent Cut</td>
+          </tr>
+          <tr class="b">
+            <td class="column-1">Metal</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="column-1">TYPE</td>
+            <td id="type">10k Yellow Gold</td>
+          </tr>
+        </table>
+      </div> {% endcomment %}
+    </section>
+  </div>
+
+  <div class="product-customizer">
+    <span class="h1">{{ product.title }}</span>
+    <span class="h1" id="carat">1.00</span> <br>
+    <span class="h1">CT. TW.</span>
+    <div class="flex">
+      <p>SKU: {{ product.variants.first.sku }}</p>
+      <p class="retail-price">
+        <span>RETAIL PRICE:</span>
+        <span>100</span>
+      </p>
+    </div>
+    <s class="compare-price">{{ product.compare_at_price | money }}</s>
+    <div class="add-to-cart">
+      <span class="sale-price-wrapper">
+        <span class="rebate-applied">70% REBATE APPLIED</span>
+        <div>
+          <span class="sale-price-title">Buy Now:</span>
+          <span id="mydemo" class="builder-price">{{ product.price | money }}</span>
+        </div>
+      </span>
+      <button class="add-to-cart-button" type="submit" name="add" onclick="cartChange()">ADD TO CART</button>
+    </div>
+    <div class="customaizer">
+      <div class="product-customizer-options">
+        <h2 class="heading">USE THIS FILTER TO CUSTOMIZE</h2>
+
+        <input type="hidden" name="id" value="{{product.variants.first.id}}">
+        <label class="" for="center-stone">Center Stone</label>
+        <span class="star">*</span>
+        <br>
+        <span class="product-customizer-option-label">
+          <button class="buttonproductcust" data-toggle="tooltip" data-placement="top" title="Diamond ">
+            <span class="button-content">
+              <img
+                src="data:image/png;base64,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"
+                height="20"
+                width="20"
+              >
+              <span class="button-text">Diamond </span>
+            </span>
+          </button>
+          <button class="buttonproductcust" data-toggle="tooltip" data-placement="top" title="Lab Diamond ">
+            <span class="button-content">
+              <img
+                src="data:image/png;base64,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"
+                height="20"
+                width="20"
+              >
+              <span class="button-text">Lab Diamond </span>
+            </span>
+          </button>
+          <button class="buttonproductcust" data-toggle="tooltip" data-placement="top" title="Ruby Diamond ">
+            <span class="button-content">
+              <img src="https://img.icons8.com/color/48/ruby.png" height="20" width="20">
+              <span class="button-text">Ruby Diamond </span>
+            </span>
+          </button>
+        </span>
+      </div>
+      <div id="centerstoneimages" class="product-customizer-option" style="padding-left:0px;">
+        <label for="center-stone-shape">Center Stone Shape</label>
+        <span class="star">*</span>
+        <br>
+      </div>
+      <label for="center-stone-color">Center Stone Weight</label>
+      <span class="star">*</span>
+      <div class="slidercontainer">
+        <input type="range" min="0.25" max="3.00" step="0.05" class="slider" id="myRange">
+        <span class="demo" id="demo"></span>
+        <div class="caratvalue">
+          <span class="values">0.25</span>
+          <span class="values">3.00</span>
+        </div>
+        <script>
+                    var slider = document.getElementById('myRange');
+          var output = document.getElementById('demo');
+          var myoutput = document.getElementById('mydemo');
+          var myvalue = {{ product.price }};
+          var carat = document.getElementById('carat');
+          var centerWeightstone = document.getElementById('centerweightstone'); // Assuming this is the correct ID
+          centerweightstone.innerHTML = centerWeightstone;
+          output.innerHTML = slider.value;
+
+          slider.oninput = function () {
+              output.innerHTML = this.value;
+              carat.innerHTML = this.value;
+              myoutput.innerHTML = (myvalue * parseFloat(this.value) / 100).toFixed(2);
+
+              // Assuming "centerweightstone" is the correct ID of the element you want to update
+              centerWeightstone.innerHTML = this.value;
+          };
+        </script>
+      </div>
+    </div>
+
+    <div class="product-customizer-option">
+      <label for="center-stone-color">Center Stone Color</label>
+      <span class="star">*</span>
+      <div class="slidercontainer">
+        <input type="range" min="1" max="10" step="1" class="slider" id="mySecond">
+        <span id="second"></span>
+        <div class="caratvalue">
+          <span class="values">0.25</span>
+          <span class="values">3.00</span>
+        </div>
+        <script>
+          var slidertwo = document.getElementById('mySecond');
+          var output = document.getElementById('second');
+          var myoutput = document.getElementById('mydemo');
+          var myvalue = {{ product.price }};
+          output.innerHTML = slider.value;
+          var carat= document.getElementById('carat');
+          slidertwo.oninput = function () {
+            output.innerHTML = this.value;
+            {% comment %} carat.innerHTML = slider.value; {% endcomment %}
+
+            myoutput.innerHTML = (myvalue / parseFloat(this.value)/100).toFixed(2);
+          };
+        </script>
+      </div>
+    </div>
+    <div class="product-customizer-option">
+      <label for="center-stone-clarity">Center Stone Clarity</label>
+      <span class="star">*</span>
+      <div class="slidercontainer">
+        <input type="range" min="1" max="10" step="1" class="slider" id="myThird">
+        <span id="third"></span>
+        <div class="caratvalue">
+          <span class="values">0.25</span>
+          <span class="values">3.00</span>
+        </div>
+        <script>
+          var sliderthree = document.getElementById('myThird');
+          var output = document.getElementById('third');
+          var myoutput = document.getElementById('mydemo');
+          var myvalue = {{ product.price }};
+          output.innerHTML = slider.value;
+          var carat= document.getElementById('carat');
+          sliderthree.oninput = function () {
+            output.innerHTML = this.value;
+            {% comment %} carat.innerHTML = slider.value; {% endcomment %}
+
+            myoutput.innerHTML = (myvalue / parseFloat(this.value)/100).toFixed(2);
+          };
+        </script>
+      </div>
+    </div>
+    <div class="product-customizer-option">
+      <label for="metal-for-mounting">Metal for Mounting</label>
+      <span class="star">*</span><br>
+      <div class="ring_mounting" id="activeid">
+        <button
+          class="buttonlink active"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="platinum"
+          onclick="inline(this)"
+          data-value="1"
+        >
+          platinum Ring
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="10K White Gold"
+          onclick="inline(this)"
+          data-value="2"
+        >
+          10K White Gold
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="14k White Gold"
+          onclick="inline(this)"
+          data-value="3"
+        >
+          14k White Gold
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="18K White Gold"
+          onclick="inline(this)"
+          data-value="4"
+        >
+          18K White Gold
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="10K Yellow Gold"
+          onclick="inline(this)"
+          data-value="5"
+        >
+          10K Yellow Gold
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="14K Yellow Gold"
+          onclick="inline(this)"
+          data-value="5"
+        >
+          14K Yellow Gold
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="18K Yellow Gold"
+          onclick="inline(this)"
+          data-value="6"
+        >
+          18K Yellow Gold
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="10K Rose Gold"
+          onclick="inline(this)"
+          data-value="7"
+        >
+          10K Rose Gold
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="14K Rose Gold"
+          onclick="inline(this)"
+          data-value="8"
+        >
+          14K Rose Gold
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="18K Rose Gold"
+          onclick="inline(this)"
+          data-value="9"
+        >
+          18K Rose Gold
+        </button>
+      </div>
+      <script>
+        {% comment %} *****************active ********************************* {% endcomment %}
+        var header = document.getElementById("activeid");
+        var btns = header.getElementsByClassName("buttonlink");
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].addEventListener("click", function() {
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+          });
+        }
+      </script>
+    </div>
+
+    <script>
+
+
+      {% comment %} *************************** js for the btn click give value ***************** {% endcomment %}
+              const inline = (element) => {
+                  let metalmounting = element.getAttribute("data-value");
+                  console.log(metalmounting);
+
+                  var mydemo = document.getElementById("mydemo");
+                  mydemo.innerHTML = 500 * metalmounting;
+                  {% comment %} document.getElementById("a").innerText = metalmounting; {% endcomment %}
+              }
+    </script>
+    <div class="product-customizer-option">
+      <label for="metal-for-mounting">Ring Size</label>
+      <span class="star">*</span><br>
+      <div class="slidercontainer" id="ringsize">
+        <button
+          class="buttonlink active"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="3.00"
+          onclick="inline(this)"
+          data-value="3.00"
+        >
+          3.00
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="3.25"
+          onclick="inline(this)"
+          data-value="3.25"
+        >
+          3.25
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="3.50"
+          onclick="inline(this)"
+          data-value="3.50"
+        >
+          3.50
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="3.75"
+          onclick="inline(this)"
+          data-value="3.75"
+        >
+          3.75
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="4.00"
+          onclick="inline(this)"
+          data-value="4.00"
+        >
+          4.00
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="4.25"
+          onclick="inline(this)"
+          data-value="4.25"
+        >
+          4.25
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="4.50"
+          onclick="inline(this)"
+          data-value="4.50"
+        >
+          4.50
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="4.75"
+          onclick="inline(this)"
+          data-value="4.75"
+        >
+          4.75
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="5.00"
+          onclick="inline(this)"
+          data-value="5.00"
+        >
+          5.00
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="5.25"
+          onclick="inline(this)"
+          data-value="5.25"
+        >
+          5.25
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="5.50"
+          onclick="inline(this)"
+          data-value="5.50"
+        >
+          5.50
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="5.75"
+          onclick="inline(this)"
+          data-value="5.75"
+        >
+          5.75
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="6.00"
+          onclick="inline(this)"
+          data-value="6.00"
+        >
+          6.00
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="6.25"
+          onclick="inline(this)"
+          data-value="6.25"
+        >
+          6.25
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="6.50"
+          onclick="inline(this)"
+          data-value="6.50"
+        >
+          6.50
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="6.75"
+          onclick="inline(this)"
+          data-value="6.75"
+        >
+          6.75
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="7.00"
+          onclick="inline(this)"
+          data-value="7.00"
+        >
+          7.00
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="7.25"
+          onclick="inline(this)"
+          data-value="7.25"
+        >
+          7.25
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="7.50"
+          onclick="inline(this)"
+          data-value="7.50"
+        >
+          7.50
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="7.75"
+          onclick="inline(this)"
+          data-value="7.75"
+        >
+          7.75
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="8.00"
+          onclick="inline(this)"
+          data-value="8.00"
+        >
+          8.00
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="8.25"
+          onclick="inline(this)"
+          data-value="8.25"
+        >
+          8.25
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="8.50"
+          onclick="inline(this)"
+          data-value="8.50"
+        >
+          8.50
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="8.75"
+          onclick="inline(this)"
+          data-value="8.75"
+        >
+          8.75
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="9.00"
+          onclick="inline(this)"
+          data-value="9.00"
+        >
+          9.00
+        </button>
+        <button
+          class="buttonlink"
+          data-toggle="tooltip"
+          data-placement="top"
+          title="9.25"
+          onclick="inline(this)"
+          data-value="9.25"
+        >
+          9.25
+        </button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div></div>
+<script>
+  
+  async function cartChange() {
+    console.log("hell");
+    
+    const apiUrl = 'https://skyvisionshopify.in/KattDiamondApi/createproduct';
+
+    var weight=document.getElementById('myRange').value
+    var color=document.getElementById('mySecond').value
+    var clarity=document.getElementById('myThird').value
+
+     var pid;
+  var a = document.getElementById("productname").innerText;
+  var b = document.getElementById("carat").innerText;
+  var productName = a+" "+b;
+  console.log(productName);
+
+     var myDemoElement = document.getElementById("mydemo");
+     var priceWithCurrency = myDemoElement.innerText; // Get the inner text which includes the currency symbol
+     
+const substring = priceWithCurrency.replace("Rs. ", "");
+    
+     var price = parseFloat(substring.replace(/,/g, "")) // Check if a numeric part is found
+     console.log("Price:", substring);
+     
+     
+    try {
+      const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+              "title": productName,
+              "body_html": "<strong>Good snowboard!</strong>",
+              "variants": [
+                {
+                    
+                    "price": price
+                    
+                }
+            ]
+          }),
+      });
+
+      const data = await response.json();
+      console.log("new product ", data);
+      console.log("id",data.product.variants[0].id)
+      pid=data.product.variants[0].id
+      // Handle the response, check for errors, and process the created product ID if successful
+  } catch (error) {
+      console.error('Error:', error);
+  }
+    
+
+  var data = {
+    items: [
+      {
+        id: pid,
+        quantity: 1,// Corrected spelling
+        properties: {
+          Center_Stone_Weight : weight,
+          Center_Stone_Color:  color,
+          Center_Stone_Clarity:  clarity, 
+          Metal_for_Mounting: "10K Yellow Gold",
+          Ring_Size: "3.00"
+      }
+      }
+    ]
+  };
+  
+      
+        try {
+          const response = await fetch("/cart/add.json", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify(data)
+          });
+      
+          const result = await response.json();
+          console.log("result", result);
+          
+          // Further actions with the result if needed
+        } catch (error) {
+          console.error('Error:', error);
+          // Handle errors here if necessary
+        }  
+
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    makeActive1(0);
+
+    var shapeidArray = [
+        "https://cdn.shopify.com/s/files/1/0737/1295/9775/files/r10.png?v=1704198420",
+        "https://cdn.shopify.com/s/files/1/0737/1295/9775/files/r1.png?v=1704198420",
+        "https://cdn.shopify.com/s/files/1/0737/1295/9775/files/r2.png?v=1704198420",
+        "https://cdn.shopify.com/s/files/1/0737/1295/9775/files/r3.png?v=1704198420",
+        "https://cdn.shopify.com/s/files/1/0737/1295/9775/files/r4.png?v=1704198420",
+        "https://cdn.shopify.com/s/files/1/0737/1295/9775/files/r5.png?v=1704198420",
+        "https://cdn.shopify.com/s/files/1/0737/1295/9775/files/r6.png?v=1704198420",
+        "https://cdn.shopify.com/s/files/1/0737/1295/9775/files/r7.png?v=1704198420",
+        "https://cdn.shopify.com/s/files/1/0737/1295/9775/files/r8.png?v=1704198420",
+        "https://cdn.shopify.com/s/files/1/0737/1295/9775/files/r9.png?v=1704198420"
+    ];
+
+    var productid = {{ product.id }};
+
+    fetch(`https://skyvisionshopify.in/KattDiamondApi/${productid}`)
+        .then(response => response.json())
+        .then(data => {
+            var varry1 = [];
+            varry1.push(data.data);
+            var varry = varry1[0];
+
+            var ans = [];
+          
+
+            varry.map((variant) => {
+                if (!ans.includes(variant.ShapeId)) {
+                    ans.push(variant.ShapeId);
+                }
+            });
+
+            ans.sort();
+
+            ans.map((id) => {
+                var elem = document.createElement('img');
+                elem.setAttribute('src', shapeidArray[id]);
+                elem.setAttribute('height', "{{image.height}}");
+                elem.setAttribute('width', "{{image.width}}");
+                elem.setAttribute('class', "img");
+
+                elem.addEventListener('click', function() {
+                    makeActive1(id); 
+                });
+
+                document.getElementById("centerstoneimages").appendChild(elem);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+});
+
+
+  function showVariants(ans){
+
+
+    var img1 = document.getElementById('imag1');
+    var img2 = document.getElementById('imag2');
+    var img3 = document.getElementById('imag3');
+    var img4 = document.getElementById('imag4');
+    var img5 = document.getElementById('imag5');
+    var img6 = document.getElementById('imag6');
+
+    var img11 = document.getElementById('imag11');
+    var img22 = document.getElementById('imag12');
+    var img33 = document.getElementById('imag13');
+    var img44 = document.getElementById('imag14');
+    var img55 = document.getElementById('imag15');
+    var img66 = document.getElementById('imag16');
+
+   
+
+    img1.setAttribute('src', ans[0]);
+    img2.setAttribute('src', ans[1]);
+    img3.setAttribute('src', ans[2]);
+    img4.setAttribute('src', ans[3]);
+    img5.setAttribute('src', ans[4]);
+    img6.setAttribute('src', ans[5]);
+
+    img11.setAttribute('src', ans[0]);
+    img22.setAttribute('src', ans[1]);
+    img33.setAttribute('src', ans[2]);
+    img44.setAttribute('src', ans[3]);
+    img55.setAttribute('src', ans[4]);
+    img66.setAttribute('src', ans[5]);
+
+    var n=ans.length
+    
+    for (let i = 1; i<=6; i++) {
+      if((i-1)<n){
+        document.getElementById(`imag1${i}`).style.display='block';
+        
+      }
+      else{
+        document.getElementById(`imag1${i}`).style.display = 'none';
+      
+    }     
+  } 
+  }
+
+  function makeActive1(shapeid) {
+    var pro = {{ product.variants | json }};
+    var available = [];
+  
+
+    var varry1 = [];
+    var varry;
+
+    pro.forEach((variant) => {
+        available.push(variant.id);
+    });
+
+    var productid={{product.id }}
+
+  fetch(`https://skyvisionshopify.in/KattDiamondApi/shape/${shapeid}/product/${productid}`)
+        .then(response => response.json())
+        .then(data => {
+            varry1.push(data.data);
+           
+            varry=varry1[0]
+         
+            var ans=[]
+           
+            varry.map((variant) => {
+                if (available.includes(variant.VarientId)) {
+                    let ind = available.indexOf(variant.VarientId);
+                    ans.push(pro[ind].featured_image.src);
+                }
+            });
+            showVariants(ans);
+            
+            
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+  }
+
+
+</script>
+

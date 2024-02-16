@@ -1,0 +1,27 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "jwellaryAppli"
+client_id = "66ac40553b0fe2a99f40ffa0786146b3"
+application_url = "https://ips-executive-exams-celtic.trycloudflare.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products,read_products,read_orders"
+
+[auth]
+redirect_urls = [
+  "https://ips-executive-exams-celtic.trycloudflare.com/auth/callback",
+  "https://ips-executive-exams-celtic.trycloudflare.com/auth/shopify/callback",
+  "https://ips-executive-exams-celtic.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-01"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "amitstoreapp-dev.myshopify.com"

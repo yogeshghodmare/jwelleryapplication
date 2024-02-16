@@ -1,0 +1,27 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "jwellaryapp"
+client_id = "16ef456b08d9770c7a6aba1cc1959a7a"
+application_url = "https://leadership-dvd-pottery-innocent.trycloudflare.com"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products,read_products,read_orders"
+
+[auth]
+redirect_urls = [
+  "https://leadership-dvd-pottery-innocent.trycloudflare.com/auth/callback",
+  "https://leadership-dvd-pottery-innocent.trycloudflare.com/auth/shopify/callback",
+  "https://leadership-dvd-pottery-innocent.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-01"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "amitstoreapp-dev.myshopify.com"
