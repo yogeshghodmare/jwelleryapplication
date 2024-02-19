@@ -77,20 +77,20 @@ const Createorder = () => {
     }
   };
 
-  // useEffect(() => {
-  //   const intervalId = setInterval(() => {
-  //     orders(); 
-  //     fetchProducts()
-  //   }, 5000); // Adjust the interval duration as needed (e.g., check every 5 seconds)
+//   useEffect(() => {
+//     const intervalId = setInterval(() => {
+//       orders(); 
+//       fetchProducts()
+//     }, 5000); // Adjust the interval duration as needed (e.g., check every 5 seconds)
 
-  //   return () => clearInterval(intervalId); // Clear the interval on component unmount
-  // }, []);
+//     return () => clearInterval(intervalId); // Clear the interval on component unmount
+//   }, []);
 
-  // useEffect(()=>{
+//   useEffect(()=>{
    
-  //     create();
+//       create();
     
-  // },[order])
+//   },[order])
 
   return <div>Createorder</div>;
 };

@@ -5,10 +5,14 @@ import { useEffect, useState } from "react";
 const OrderDetail = ({ orderData }) => {
     const [orders, setOrders] = useState([])
     const [products, setProducts] = useState([])
+   
+
+
     let fetch = useAuthenticatedFetch();
     useEffect(() => {
         fetchOrders()
         fetchProducts()
+        
     }, [])
     async function fetchProducts() {
         try {
@@ -107,6 +111,114 @@ const OrderDetail = ({ orderData }) => {
             // </Collapsible>,
         ];
     });
+
+
+    async function ordersfromDatabase() {
+        var check=0;
+        try {
+            const response = await fetch('https://skyvisionshopify.in/KattDiamondApi/cart/products');
+            const data = await response.json();
+            console.log("extracted",data.data);
+            setOrderdata(data.data);
+            console.log("items",orderdata)
+            check=1;
+        } catch (error) {
+            console.log('Error:', error);
+        }
+        if(check){
+            deletefromdatabase()
+        }
+    }
+    async function deletefromdatabase(){
+        console.log("phase1")
+        if(orderdata.length>0){
+            await Promise.all(orderdata.map(async (item) => {
+                console.log("phase2")
+                try {
+                    console.log("phase3")
+                    let request = await fetch("/api/products/delete", {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ id: item.product_id }),
+                    });
+    
+                    if (request.ok) {
+                       
+                        let text = await request.text();
+
+                        try{
+                            let req = await fetch("https://skyvisionshopify.in/KattDiamondApi/status", {
+                                method: 'PUT',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ product_status:1,product_id: item.product_id }),
+                            });
+                            console.log("updated",req)
+                        }
+                        catch(e){
+                            console.log("set to 1")
+                        }
+                        console.log(text); 
+                    } else {
+                        
+                        console.log("Failed to delete product");
+                    }
+                } catch (e) {
+                    console.log("Not Deleted", e);
+                }
+            }));
+        }
+       
+    }
+
+
+    // function handledelete(){
+    //     fetchOrders()
+    //     fetchProducts()
+
+    //     var productid=products.map((item)=> item.id)
+    //     const ordersid = orders.flatMap((order) =>
+    //     order.line_items.map((item) => item.product_id)
+    // );
+    
+
+    //     console.log("orderdetail",ordersid)
+    //     console.log("productsdetail",productid)
+    //     ordersid.map(async (items,i)=>{
+    //         if(productid.includes(items))
+    //         {
+    //             try {
+    //                                 console.log("phase3")
+    //                                 let request = await fetch("/api/products/delete", {
+    //                                     method: 'DELETE',
+    //                                     headers: {
+    //                                         'Content-Type': 'application/json',
+    //                                     },
+    //                                     body: JSON.stringify({ id: items }),
+    //                                 });
+    //                                 if(request.ok)
+    //                                 {
+    //                                     console.log("Deleted Successfully")
+    //                                 }
+                    
+    //                 }
+    //                 catch(e){
+    //                     console.log("Not Deleted Successfully")
+    //                 }
+    // }})
+    // }
+
+    // useEffect(() => {
+    //     const intervalId = setInterval(() => {
+    //         ordersfromDatabase()
+    //     }, 10000);})
+    useEffect(()=>{
+        ordersfromDatabase()
+    })    
+
     return (
         <>
             <Layout sectioned>
